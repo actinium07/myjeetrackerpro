@@ -6,6 +6,8 @@ import { PrepAISolver } from './components/PrepAISolver';
 import { PYQSampleVault } from './components/PYQSampleVault';
 import { MistakeBookView } from './components/MistakeBookView';
 import { ArchitectureModal } from './components/ArchitectureModal';
+import { MobileAPKModal } from './components/MobileAPKModal';
+import { OfflineIndicator } from './components/OfflineIndicator';
 import { EXAM_TARGETS } from './data/mockExams';
 import { QUESTION_BANK } from './data/pyqQuestions';
 import { ExamTarget, ExamId, CBTQuestion, MistakeBookItem } from './types';
@@ -42,6 +44,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('dashboard');
   const [activeAIQuestion, setActiveAIQuestion] = useState<CBTQuestion | null>(null);
   const [activeExamQuestions, setActiveExamQuestions] = useState<CBTQuestion[]>(QUESTION_BANK);
+  const [isAPKModalOpen, setIsAPKModalOpen] = useState<boolean>(false);
   const [mistakes, setMistakes] = useState<MistakeBookItem[]>(() => {
     const saved = localStorage.getItem('jee_mistake_book');
     if (saved) {
@@ -115,6 +118,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         mistakeCount={mistakes.length}
+        onOpenAPKModal={() => setIsAPKModalOpen(true)}
       />
 
       {/* Main Container */}
@@ -127,6 +131,7 @@ export default function App() {
             onLaunchCBT={() => handleLaunchExamMode()}
             onOpenAI={() => setActiveTab('prep-ai')}
             onOpenPYQ={() => setActiveTab('pyq-vault')}
+            onOpenAPK={() => setIsAPKModalOpen(true)}
           />
         )}
 
@@ -166,6 +171,15 @@ export default function App() {
         {activeTab === 'blueprint' && <ArchitectureModal />}
       </main>
 
+      {/* Universal Mobile APK / iOS Installer Modal */}
+      <MobileAPKModal
+        isOpen={isAPKModalOpen}
+        onClose={() => setIsAPKModalOpen(false)}
+      />
+
+      {/* Offline Connectivity Notification */}
+      <OfflineIndicator />
+
       {/* Footer */}
       <footer className="border-t border-slate-900 bg-slate-950/80 py-4 px-4 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
@@ -173,7 +187,7 @@ export default function App() {
             JEE 2027 TrackPrep & AI Solver • Official NTA CBT Simulation Standard
           </span>
           <span className="text-[11px] text-slate-600">
-            Powered by Gemini Multilingual Vision Engine • Multilingual (EN, HI, BN, GU, AS)
+            Android APK (WebAPK) & iOS IPA Universal Ready • Multilingual (EN, HI, BN, GU, AS)
           </span>
         </div>
       </footer>

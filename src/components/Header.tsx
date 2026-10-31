@@ -9,6 +9,7 @@ interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   mistakeCount: number;
+  onOpenAPKModal: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -18,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
   mistakeCount,
+  onOpenAPKModal,
 }) => {
   return (
     <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-slate-100">
@@ -43,8 +45,17 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Dynamic Exam Selector Dropdown */}
+        {/* Dynamic Exam Selector Dropdown & Mobile APK Actions */}
         <div className="flex items-center gap-2">
+          {/* Universal Mobile APK / iOS Installer Button */}
+          <button
+            onClick={onOpenAPKModal}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-black shadow-md shadow-emerald-600/25 transition-all transform active:scale-95 border border-emerald-400/30"
+          >
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span>Install APK / App</span>
+          </button>
+
           <div className="relative">
             <div className="flex items-center gap-1.5 bg-slate-800/90 border border-amber-500/40 rounded-xl px-2.5 py-1.5 shadow-inner">
               <Target className="w-4 h-4 text-amber-400 shrink-0 animate-pulse" />
