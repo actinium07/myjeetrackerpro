@@ -1,0 +1,6 @@
+{
+  "name": "JEE 2027 TrackPrep & AI Solver",
+  "description": "Cross-platform mobile preparation platform for JEE 2027 with dynamic exam countdowns, NTA CBT test engine, PYQ bank, and 5-language AI doubt solver.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
