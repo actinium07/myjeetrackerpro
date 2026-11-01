@@ -1,0 +1,15 @@
+<resources>
+    <style name="Theme.JEE2027TrackPrep" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#f59e0b</item>
+        <item name="colorPrimaryVariant">#d97706</item>
+        <item name="colorOnPrimary">#020617</item>
+        <item name="android:windowBackground">#020617</item>
+        <item name="android:statusBarColor">#020617</item>
+        <item name="android:navigationBarColor">#020617</item>
+    </style>
+
+    <style name="Theme.JEE2027TrackPrep.Fullscreen" parent="Theme.JEE2027TrackPrep">
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>
